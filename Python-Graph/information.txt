@@ -1,0 +1,38 @@
+Importing Required Libraries:
+
+sys: Used to access command-line arguments.
+pandas (pd): Used for data manipulation and reading the CSV file.
+networkx (nx): Used for graph creation and manipulation.
+matplotlib.pyplot (plt): Used for graph visualization.
+Getting the File Path:
+
+The code checks if the number of command-line arguments is less than 2 (indicating that a file path was not provided).
+If no file path is provided, it prints an error message and exits the script.
+Otherwise, it assigns the provided file path to the variable file_path.
+Reading the Adjacency Matrix:
+
+The code uses pd.read_csv to read the CSV file located at file_path.
+The header=None parameter specifies that the CSV file does not have a header row.
+The resulting DataFrame is stored in the variable adjacency_matrix.
+Creating an Empty Directed Graph:
+
+The code creates an empty directed graph using nx.DiGraph().
+This graph will hold the nodes and edges of the graph based on the adjacency matrix.
+Adding Nodes to the Graph:
+
+The code extracts the nodes from the first column of the adjacency matrix using adjacency_matrix.iloc[:, 0].
+The graph.add_nodes_from function adds the extracted nodes to the graph.
+Adding Edges to the Graph:
+
+The code iterates over each row of the adjacency matrix using iterrows().
+For each row, it extracts the node name from the first element (node = row[0]).
+It then iterates over the remaining elements (edges) in the row, along with their corresponding indices using enumerate(edges).
+If the weight of an edge is non-zero, it adds the edge to the graph using graph.add_edge with the source node (node), target node (nodes[j]), and weight (weight).
+Drawing and Visualizing the Graph:
+
+The code uses nx.spring_layout to calculate the positions of the nodes for visualization.
+It creates a dictionary labels where node names are used as labels for the nodes.
+The nx.draw function is used to draw the graph with labels.
+The nx.draw_networkx_edge_labels function is used to add edge labels based on the edge weights.
+Finally, plt.show() displays the graph visualization.
+This code allows you to provide a CSV file path as a command-line argument, reads the adjacency matrix from the CSV file, creates a directed graph, adds nodes and edges based on the adjacency matrix, and then visualizes the graph with labeled nodes and edge weights.
